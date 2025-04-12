@@ -1,22 +1,3 @@
-Absolutely! Here's how I’ll structure your request:
-
-### ✅ What you’ll get:
-1. **README-style explanation** (Markdown format) explaining:
-   - What is Pydantic?
-   - Why it’s useful
-   - Key concepts with theory
-   - Step-by-step transition into code
-
-2. **A separate Python script** with:
-   - All key features of `pydantic.BaseModel`
-   - Examples and inline comments
-   - Demonstrations of usage like validation, aliasing, constraints, computed fields, nested models, etc.
-
----
-
-### 📘 README.md (Detailed + Brief + In-depth)
-
-```markdown
 # Pydantic: Fast and Easy Data Validation in Python 🚀
 
 ## 📌 What is Pydantic?
@@ -118,6 +99,28 @@ class User(BaseModel):
         if not v.istitle():
             raise ValueError('Name must be capitalized')
         return v
+```
+
+#### 🔒 10. Immutability
+```python
+class ImmutableUser(BaseModel):
+    id: int
+    name: str
+
+    class Config:
+        allow_mutation = False
+```
+
+#### ⚙️ 11. Model Config Example
+```python
+class ORMUser(BaseModel):
+    id: int
+    username: str
+
+    class Config:
+        orm_mode = True
+        extra = "forbid"  # Forbid unknown fields
+        allow_population_by_field_name = True
 ```
 
 ---

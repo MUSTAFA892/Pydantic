@@ -60,6 +60,28 @@ class DateRange(BaseModel):
             raise ValueError("start must be before end")
         return values
 
+                               
+# 🔒 Immutability
+
+class ImmutableUser(BaseModel):
+    id: int
+    name: str
+
+    class Config:
+        allow_mutation = False
+
+
+# ⚙️ Model Config Example
+class ORMUser(BaseModel):
+    id: int
+    username: str
+
+    class Config:
+        orm_mode = True
+        extra = "forbid"  # Forbid unknown fields
+        allow_population_by_field_name = True
+
+
 # ✅ Model Usage
 if __name__ == "__main__":
     user = User(id=1, name="John", email="john@example.com")
